@@ -1,0 +1,8 @@
+# vi temporary files
+*.sw*
+# python virtualenv
+venv/
+# pytest
+.pytest_cache
+# code coverage tests
+.coverage
