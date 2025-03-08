@@ -6,3 +6,5 @@ venv/
 .pytest_cache
 # code coverage tests
 .coverage
+# bytecode compiled modules
+__pycache__/
