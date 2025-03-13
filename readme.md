@@ -5,6 +5,9 @@ Lev Zelenin - NJIT - Spring 2025 - Web Systems Development
 Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 
 ### Objectives
-1. Make a calculator using object oriented design
+1. Make a command line calculator using object oriented design (command pattern)
 2. Set up testing with complete coverage
 3. Use type hints and decorators for methods
+4. Use fixtures for test input
+5. Randomize test input with faker
+6. Create groups of test inputs with pytest parameterize
