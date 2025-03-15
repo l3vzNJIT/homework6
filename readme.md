@@ -11,3 +11,4 @@ Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 4. Use fixtures for test input
 5. Randomize test input with faker
 6. Create groups of test inputs with pytest parameterize
+7. Add a command line argument --num_records and use it to determine length of tests
