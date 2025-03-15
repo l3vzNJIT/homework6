@@ -2,8 +2,8 @@
 """
 
 import pytest
-from faker import Faker
 from app.input_parser import CommandInput
+from tests.conftest import gen_rnd_cmd
 
 
 def test_parser():
@@ -43,19 +43,6 @@ def test_with_fixture(example_command):  # pylint: disable=redefined-outer-name
     assert parsed_command.args["argument_3"] == example_command["args"]["argument_3"]
 
 
-def gen_rnd_cmd():
-    """ Generate a random command string with Faker """
-    fake = Faker()
-    fake_command = {"command": fake.word(), "num_args": fake.random_digit()}
-    args = []
-    fake_command["args"] = {}
-    for i in range(1, fake_command["num_args"] + 1):
-        fake_command["args"][f"argument_{i}"] = fake.word()
-        args.append(fake_command["args"][f"argument_{i}"])
-    fake_command["input_str"] = " ".join([fake_command["command"]] + args)
-    return fake_command
-
-
 @pytest.fixture
 def ex_rnd_cmd():
     """ Wrap a random command generation into a fixtrue """
@@ -72,9 +59,9 @@ def test_with_random_fixture(ex_rnd_cmd):  # pylint: disable=redefined-outer-nam
         assert parsed_command.args[f"argument_{i}"] == ex_rnd_cmd["args"][f"argument_{i}"]
 
 
-# set up 100 test cases
+# set up 10 test cases
 batch_of_tests = []
-for _ in range(100):
+for _ in range(10):
     batch_of_tests.append(gen_rnd_cmd())
 @pytest.mark.parametrize("command_input", batch_of_tests)
 
@@ -86,3 +73,13 @@ def test_with_random_commands(command_input):
     assert parsed_command.num_args == command_input["num_args"]
     for i in range(1, command_input["num_args"] + 1):
         assert parsed_command.args[f"argument_{i}"] == command_input["args"][f"argument_{i}"]
+
+
+def test_with_random_cli_commands(cli_input):
+    """ Test the CommandInput parser with a randomized fixture """
+    parsed_command = CommandInput(cli_input["input_str"])
+    assert parsed_command.input_string == cli_input["input_str"]
+    assert parsed_command.command == cli_input["command"]
+    assert parsed_command.num_args == cli_input["num_args"]
+    for i in range(1, cli_input["num_args"] + 1):
+        assert parsed_command.args[f"argument_{i}"] == cli_input["args"][f"argument_{i}"]
