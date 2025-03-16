@@ -1,7 +1,7 @@
 """ Main entry point to the app
 """
 
-from app.input_parser import CommandInput
+from app.parser import CommandInput
 
 while True:
     try:
