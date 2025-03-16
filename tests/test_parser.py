@@ -2,7 +2,7 @@
 """
 
 import pytest
-from app.input_parser import CommandInput
+from app.parser import CommandInput, CommandOutput
 from tests.conftest import gen_rnd_cmd
 
 
@@ -86,3 +86,13 @@ def test_with_random_cli_commands(cli_input):
     for i in range(1, cli_input["num_args"] + 1):
         assert parsed_command.args[f"argument_{i}"] == \
             cli_input["args"][f"argument_{i}"], f"arg{i}"
+
+
+def test_command_output(cli_input):
+    """ Test the CommandOutput class with a randomized fixture """
+    output = CommandOutput(cli_input["input_str"])
+    assert str(output) == cli_input["input_str"]
+    assert output.output_string == cli_input["input_str"]
+    assert output.get_stats() is not None
+    assert output.time_completed is not None
+    assert output.output_size == len(cli_input["input_str"])

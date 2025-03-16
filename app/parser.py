@@ -1,7 +1,8 @@
-""" Module for generating command inputs from string input.
-
-It provides classes for interpreting strings as a command and set of arguments
+""" Module for generating command inputs from string input and storing command output as a string.
 """
+
+import datetime
+
 
 class CommandInput():
     """ Stores and parses an input string as a command input object """
@@ -24,3 +25,18 @@ class CommandInput():
         for arg in tokens:
             self.num_args += 1
             self.args[f"argument_{self.num_args}"] = arg
+
+
+class CommandOutput():
+    """ Stores output from a command """
+    def __init__(self, output_string: str) -> None:
+        self.output_string = output_string
+        self.output_size = len(self.output_string)
+        self.time_completed = datetime.datetime.now()
+
+    def __str__(self) -> str:
+        return self.output_string
+
+    def get_stats(self) -> str:
+        """ Show stats about the command execution """
+        return f"Command finished at {self.time_completed}"
