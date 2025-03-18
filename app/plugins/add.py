@@ -25,7 +25,10 @@ class Add(Plugin):
 
     def execute(self) -> CommandOutput:
         """Add arguments together, return CommandOutput with sum"""
-        out_sum = Decimal(0)
+        if self.cmd.num_args == 0:
+            out_sum = None
+        else:
+            out_sum = Decimal(0)
 
         for i in range(1, self.cmd.num_args + 1):
             out_sum += Decimal(self.cmd.args[f"argument_{i}"])
