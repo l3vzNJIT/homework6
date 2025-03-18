@@ -12,3 +12,16 @@ Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 5. Randomize test input with faker
 6. Create groups of test inputs with pytest parameterize
 7. Add a command line argument --num_records and use it to determine length of tests
+
+## Installation and Usage Guide
+## Linux
+```bash
+# Clone the repository
+git clone https://github.com/l3vzNJIT/homework5.git
+# Go to project folder
+cd homework5
+# Install required packages - necessary for plugin code to work
+pip install -r requirements.txt
+# Run
+python main.py
+```
