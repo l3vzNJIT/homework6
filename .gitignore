@@ -8,3 +8,5 @@ venv/
 .coverage
 # bytecode compiled modules
 __pycache__/
+# setuptools and wheel metadata
+*.egg-info/

@@ -1,5 +1,4 @@
-""" Tests for the input string parser
-"""
+"""Tests for the parser (CommandInput, CommandOutput)."""
 
 import pytest
 from app.parser import CommandInput, CommandOutput
@@ -7,7 +6,7 @@ from tests.conftest import gen_rnd_cmd
 
 
 def test_parser():
-    """ Test a command with two arguments """
+    """Test a command with two arguments"""
     command1 = "add 1 1"
     parsed_command = CommandInput(command1)
     assert parsed_command.input_string == command1, "input string"
@@ -19,7 +18,7 @@ def test_parser():
 
 @pytest.fixture
 def example_command():
-    """ Define a pytest fixture for a single command """
+    """Define a pytest fixture for a single command"""
     return {
             "input_str": "command arg1 arg2 arg3",
             "command": "command",
@@ -33,7 +32,7 @@ def example_command():
 
 
 def test_with_fixture(example_command):  # pylint: disable=redefined-outer-name
-    """ Test the CommandInput parser with a fixture """
+    """Test the CommandInput parser with a fixture"""
     parsed_command = CommandInput(example_command["input_str"])
     assert parsed_command.input_string == example_command["input_str"], "input_str"
     assert parsed_command.command == example_command["command"], "command"
@@ -45,12 +44,12 @@ def test_with_fixture(example_command):  # pylint: disable=redefined-outer-name
 
 @pytest.fixture
 def ex_rnd_cmd():
-    """ Wrap a random command generation into a fixtrue """
+    """Wrap a random command generation into a fixtrue"""
     return gen_rnd_cmd()
 
 
 def test_with_random_fixture(ex_rnd_cmd):  # pylint: disable=redefined-outer-name
-    """ Test the CommandInput parser with a randomized fixture """
+    """Test the CommandInput parser with a randomized fixture"""
     parsed_command = CommandInput(ex_rnd_cmd["input_str"])
     assert parsed_command.input_string == ex_rnd_cmd["input_str"], "input_str"
     assert parsed_command.command == ex_rnd_cmd["command"], "command"
@@ -67,7 +66,7 @@ for _ in range(10):
 @pytest.mark.parametrize("command_input", batch_of_tests)
 
 def test_with_random_commands(command_input):
-    """ Test the CommandInput parser with a randomized fixture """
+    """Test the CommandInput parser with a randomized fixture"""
     parsed_command = CommandInput(command_input["input_str"])
     assert parsed_command.input_string == command_input["input_str"], "input_str"
     assert parsed_command.command == command_input["command"], "command"
@@ -78,7 +77,7 @@ def test_with_random_commands(command_input):
 
 
 def test_with_random_cli_commands(cli_input):
-    """ Test the CommandInput parser with a randomized fixture """
+    """Test the CommandInput parser with a randomized fixture"""
     parsed_command = CommandInput(cli_input["input_str"])
     assert parsed_command.input_string == cli_input["input_str"], "input_str"
     assert parsed_command.command == cli_input["command"], "command"
@@ -89,7 +88,7 @@ def test_with_random_cli_commands(cli_input):
 
 
 def test_command_output(cli_input):
-    """ Test the CommandOutput class with a randomized fixture """
+    """Test the CommandOutput class with a randomized fixture"""
     output = CommandOutput(cli_input["input_str"])
     assert str(output) == cli_input["input_str"]
     assert output.output_string == cli_input["input_str"]
