@@ -1,4 +1,4 @@
-"""Plugin for the addition command - adds the arguments together and returns the result.
+"""Plugin for the subtraction command - subtracts the arguments together and returns the result.
 
 Uses decimal data type.
 """
