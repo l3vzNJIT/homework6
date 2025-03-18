@@ -63,6 +63,7 @@ def test_with_random_fixture(ex_rnd_cmd):  # pylint: disable=redefined-outer-nam
 batch_of_tests = []
 for _ in range(10):
     batch_of_tests.append(gen_rnd_cmd())
+
 @pytest.mark.parametrize("command_input", batch_of_tests)
 
 def test_with_random_commands(command_input):

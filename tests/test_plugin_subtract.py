@@ -28,9 +28,11 @@ def test_subtraction_range(sub_input):
     output = Subtract(sub_input).execute()
     assert isinstance(output, CommandOutput)
     correct_diff = None
+
     for i in range(1, sub_input.num_args + 1):
         if i == 1:
             correct_diff = Decimal(sub_input.args[f"argument_{i}"])
         else:
             correct_diff -= Decimal(sub_input.args[f"argument_{i}"])
+
     assert str(correct_diff) == str(output)
