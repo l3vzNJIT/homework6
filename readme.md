@@ -12,6 +12,7 @@ Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 5. Randomize test input with faker
 6. Create groups of test inputs with pytest parameterize
 7. Add a command line argument --num_records and use it to determine length of tests
+8. Implement commands using extensible plugin design
 
 ## Installation and Usage Guide
 ## Linux
