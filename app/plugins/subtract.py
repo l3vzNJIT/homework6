@@ -25,7 +25,6 @@ class Subtract(Plugin):
 
     def execute(self) -> CommandOutput:
         """Subtract arguments together, return CommandOutput with sum"""
-
         out_diff = None
 
         for i in range(1, self.cmd.num_args + 1):
