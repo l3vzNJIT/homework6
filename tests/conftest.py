@@ -61,6 +61,21 @@ def gen_sub_cmd():
 
     return CommandInput(fake_command["input_str"])
 
+def gen_mult_cmd():
+    """Generates a random addition command with random arguments and argument count"""
+    fake = Faker()
+    fake_command = {"command": "multiply", "num_args": fake.random_digit()}
+    args = []
+    fake_command["args"] = {}
+
+    for i in range(1, fake_command["num_args"] + 1):
+        fake_command["args"][f"argument_{i}"] = str(fake.random_int(min=-10000, max=10000))
+        args.append(fake_command["args"][f"argument_{i}"])
+
+    fake_command["input_str"] = " ".join([fake_command["command"]] + args)
+
+    return CommandInput(fake_command["input_str"])
+
 
 def pytest_generate_tests(metafunc):
     """Auto-generate parametrizations via hook in pytest"""
@@ -76,7 +91,12 @@ def pytest_generate_tests(metafunc):
         add_data = [gen_add_cmd() for _ in range(num_records)]
         metafunc.parametrize("add_input", add_data)
 
-     # subtraction tests
+    # subtraction tests
     if "sub_input" in metafunc.fixturenames:
         sub_data = [gen_sub_cmd() for _ in range(num_records)]
         metafunc.parametrize("sub_input", sub_data)
+
+    # multiplication tests
+    if "mult_input" in metafunc.fixturenames:
+        mult_data = [gen_mult_cmd() for _ in range(num_records)]
+        metafunc.parametrize("mult_input", mult_data)
