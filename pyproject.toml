@@ -4,6 +4,7 @@ version = "0.1.0"
 
 [project.entry-points."calculator.plugins"]
 add_plugin = "app.plugins.add:Add"
+subtract_plugin = "app.plugins.subtract:Subtract"
 
 [build-system]
 requires = ["setuptools", "wheel"]
