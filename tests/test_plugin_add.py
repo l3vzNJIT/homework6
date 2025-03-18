@@ -27,7 +27,10 @@ def test_addition_range(add_input):
     assert Add.in_scope(add_input)
     output = Add(add_input).execute()
     assert isinstance(output, CommandOutput)
-    correct_sum = 0
+    if add_input.num_args == 0:
+        correct_sum = None
+    else:
+        correct_sum = 0
     for i in range(1, add_input.num_args + 1):
         correct_sum += Decimal(add_input.args[f"argument_{i}"])
     assert str(correct_sum) == str(output)
