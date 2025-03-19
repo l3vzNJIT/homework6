@@ -17,7 +17,7 @@ for entry_point in importlib.metadata.entry_points(group="calculator.plugins"):
 
 print(f"Plugins loaded: {plugins}")
 
-exit_str = re.compile(r"^\s*(exit|quit)", re.IGNORECASE)
+exit_str = re.compile(r"^\s*(exit|quit|q)", re.IGNORECASE)
 
 while True:
     try:
