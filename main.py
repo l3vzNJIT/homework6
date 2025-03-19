@@ -1,8 +1,14 @@
 """Main entry point to the app"""
 
+import os
 import re
 import importlib.metadata
+from dotenv import load_dotenv
 from app.parser import CommandInput
+
+load_dotenv()
+dummy_key = os.getenv("DUMMY_API_KEY")
+print(f"Dummy key: {dummy_key}")
 
 plugins = {}
 for entry_point in importlib.metadata.entry_points(group="calculator.plugins"):
