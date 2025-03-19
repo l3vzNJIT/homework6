@@ -1,6 +1,7 @@
 """Module for generating command inputs from string input and storing command output as a string."""
 
 import datetime
+import logging
 
 
 class CommandInput():
@@ -9,6 +10,7 @@ class CommandInput():
         """Initializes a command input object by parsing an input string"""
         self.input_string = input_string
         self.parse_input()
+        logging.debug(f"CommandInput recieved: {self.__dict__}")
 
     @staticmethod
     def get_token(line: str) -> str:
@@ -32,6 +34,7 @@ class CommandOutput():
         self.output_string = output_string
         self.output_size = len(self.output_string)
         self.time_completed = datetime.datetime.now()
+        logging.debug(f"CommandOutput recieved: {self.__dict__}")
 
     def __str__(self) -> str:
         return self.output_string
