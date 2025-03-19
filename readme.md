@@ -15,7 +15,7 @@ Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 8. Implement commands using extensible plugin design
 9. Support envioronment variables
 10. Use logging
-11. Use GitHub actions to test pull request code
+11. Use GitHub actions to test pull request code (with pylint and cov)
 
 ## Installation and Usage Guide
 ## Linux
