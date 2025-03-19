@@ -61,6 +61,7 @@ def gen_sub_cmd():
 
     return CommandInput(fake_command["input_str"])
 
+
 def gen_mult_cmd():
     """Generates a random addition command with random arguments and argument count"""
     fake = Faker()
@@ -70,6 +71,24 @@ def gen_mult_cmd():
 
     for i in range(1, fake_command["num_args"] + 1):
         fake_command["args"][f"argument_{i}"] = str(fake.random_int(min=-10000, max=10000))
+        args.append(fake_command["args"][f"argument_{i}"])
+
+    fake_command["input_str"] = " ".join([fake_command["command"]] + args)
+
+    return CommandInput(fake_command["input_str"])
+
+
+def gen_div_cmd():
+    """Generates a random addition command with random arguments and argument count"""
+    fake = Faker()
+    fake_command = {"command": "divide", "num_args": fake.random_digit()}
+    args = []
+    fake_command["args"] = {}
+
+    for i in range(1, fake_command["num_args"] + 1):
+        fake_command["args"][f"argument_{i}"] = str(fake.random_int(min=-10000, max=10000))
+        if fake_command["args"][f"argument_{i}"] == 0:
+            fake_command["args"][f"argument_{i}"] = 1
         args.append(fake_command["args"][f"argument_{i}"])
 
     fake_command["input_str"] = " ".join([fake_command["command"]] + args)
@@ -100,3 +119,8 @@ def pytest_generate_tests(metafunc):
     if "mult_input" in metafunc.fixturenames:
         mult_data = [gen_mult_cmd() for _ in range(num_records)]
         metafunc.parametrize("mult_input", mult_data)
+
+    # division tests
+    if "div_input" in metafunc.fixturenames:
+        div_data = [gen_div_cmd() for _ in range(num_records)]
+        metafunc.parametrize("div_input", div_data)
