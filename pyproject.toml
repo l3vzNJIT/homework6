@@ -15,4 +15,4 @@ build-backend = "setuptools.build_meta"
 where = ["."]
 
 [tool.pylint.'MESSAGES CONTROL']
-disable = ["unnecessary-ellipsis", "unnecessary-pass"]
+disable = ["unnecessary-ellipsis", "unnecessary-pass", "logging-fstring-interpolation"]
