@@ -13,6 +13,9 @@ Modern Python development practice: SOLID, DRY, 12 factor app, design patterns
 6. Create groups of test inputs with pytest parameterize
 7. Add a command line argument --num_records and use it to determine length of tests
 8. Implement commands using extensible plugin design
+9. Support envioronment variables
+10. Use logging
+11. Use GitHub actions to test pull request code
 
 ## Installation and Usage Guide
 ## Linux
